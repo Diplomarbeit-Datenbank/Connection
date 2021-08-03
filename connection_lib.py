@@ -103,7 +103,7 @@ class Sever:
             self.client_socket.settimeout(self.time_out)
             try:
                 packet = self.client_socket.recv(4096)
-            except TimeoutError:
+            except socket.timeout:
                 print('Time out (there could be data lost)')
                 # This happens when b'<end>' is not right received
                 break
@@ -154,7 +154,7 @@ class Sever:
         """
         cv2.imwrite(file_name, image_data)
         if self.show_info is True:
-            print('Image, ' + file_name + 'is stored')
+            print('Image, ' + file_name + ' is stored')
 
     def store_mp3(self, frame_rate, audio_data, file_name):
         """
@@ -167,7 +167,7 @@ class Sever:
         song = pydub.AudioSegment(np.int16(audio_data).tobytes(), frame_rate=frame_rate, sample_width=2, channels=2)
         song.export(file_name, format='mp3', bitrate='320k')
         if self.show_info is True:
-            print('MP3, ' + file_name + 'is stored')
+            print('MP3, ' + file_name + ' is stored')
 
     def store_gif(self, gif_fps, gif_data, file_name):
         """
@@ -181,7 +181,7 @@ class Sever:
         single_images = [_Image.fromarray(img) for img in gif_data]
         single_images[0].save(file_name, save_all=True, append_images=single_images[1:], duration=gif_fps, loop=0)
         if self.show_info is True:
-            print('GIF, ' + file_name + 'is stored')
+            print('GIF, ' + file_name + ' is stored')
 
     def get_dict(self):
         """
@@ -200,16 +200,6 @@ class Sever:
 def main():
     sever = Sever()
     sever.start_sever()
-    # sever.send_string('Hallo du da')
-    # print(sever.get_string())
-    # image = sever.get_image()
-    # cv2.imshow('image', image)
-    # cv2.waitKey(0)
-    # sever.get_and_store_mp3('/home/pi/Desktop/Diplomarbeit/Sever/songs/song4.mp3')
-    # sever.get_and_store_gif('/home/pi/Desktop/Diplomarbeit/Sever/GIFS/spongebob1.gif')
-    # sever.send_string('Auf widersehen')
-    d = sever.get_dict()
-    print(d.get('args'))
     sever.close_connection()
 
 
