@@ -11,7 +11,7 @@
         -> wait and store gif file from client
 
     You see, it is mostly to receive data not to send -> The Game Frame should get the most data from the
-    client and not provide it self. -> So if the user download a new gif -> The gif will be downloaded on the 
+    client and not provide it self. -> So if the user download a new gif -> The gif will be downloaded on the
     client and when this is done the client will send the gif to the Game Frame (client = End PC)
 
 """
@@ -21,10 +21,8 @@ import numpy as np
 import pickle
 import socket
 import pydub
-import time
 import sys
 import cv2
-
 
 __author__ = 'Christof Haidegger'
 __date__ = '27.07.2021'
@@ -45,8 +43,9 @@ class Sever:
         self.__PORT__ = 7777
         self.time_out = 5  # set time out for five seconds
         self.show_info = show_info
+        self.client_socket, self.client_addr = None, None
         self.sever_socket = self._create_sever_socket()
-    
+
     def start_sever(self):
         """
         : Start the sever socket (wait for connection to client)
@@ -94,7 +93,7 @@ class Sever:
 
             The next thing is: To be sure to get no error by collecting the data the socket will be wait 5ns between
                                collecting the data
-            When data collecting is finnished the Sever will send the message: <end> to the client
+            When data collecting is finished the Sever will send the message: <end> to the client
 
         """
         received = list()
@@ -104,9 +103,9 @@ class Sever:
             self.client_socket.settimeout(self.time_out)
             try:
                 packet = self.client_socket.recv(4096)
-            except:
+            except TimeoutError:
                 print('Time out (there could be data lost)')
-                # This happens when b'<end>' is not right recevied
+                # This happens when b'<end>' is not right received
                 break
             if not packet or packet == b'<end>':
                 break
@@ -115,9 +114,9 @@ class Sever:
 
         if self.show_info is True:
             print('End to get data')
-            
+
         return b"".join(received)
-    
+
     def get_dict_data(self):
         """
         :return: Wait for the numpy array and return the received numpy array
@@ -125,18 +124,17 @@ class Sever:
         received = self._wait_for_data()
         try:
             return pickle.loads(received)
-        except:
+        except KeyError:
             # if some error happens a empty dict will be returned
             return dict()
-    
 
     def store_string(self, path, string, mode='a'):
         """
-        : store recived string data in a text dokument
+        : store received string data in a text document
         """
         try:
             new_text_file = open(path, mode)
-        except:
+        except FileNotFoundError:
             print('No such File ore Directory', file=sys.stderr)
             return
         if self.show_info is True:
@@ -155,15 +153,21 @@ class Sever:
         :return: Wait for the image (numpy array) and return it
         """
         cv2.imwrite(file_name, image_data)
+        if self.show_info is True:
+            print('Image, ' + file_name + 'is stored')
 
     def store_mp3(self, frame_rate, audio_data, file_name):
         """
             -> This function takes about 40 seconds for a 2:30 minutes audio file
+        :param frame_rate: the frame rate of the MP3 File
+        :param audio_data: the numpy array which contains the Audio Data
         :param file_name: path to store the audio file
         :Wait for the mp3 data (numpy array) and store it under the file_name param
         """
         song = pydub.AudioSegment(np.int16(audio_data).tobytes(), frame_rate=frame_rate, sample_width=2, channels=2)
         song.export(file_name, format='mp3', bitrate='320k')
+        if self.show_info is True:
+            print('MP3, ' + file_name + 'is stored')
 
     def store_gif(self, gif_fps, gif_data, file_name):
         """
@@ -176,6 +180,8 @@ class Sever:
         """
         single_images = [_Image.fromarray(img) for img in gif_data]
         single_images[0].save(file_name, save_all=True, append_images=single_images[1:], duration=gif_fps, loop=0)
+        if self.show_info is True:
+            print('GIF, ' + file_name + 'is stored')
 
     def get_dict(self):
         """
@@ -183,7 +189,7 @@ class Sever:
         """
         dictionary = self.get_dict_data()
         return dictionary
-    
+
     def close_connection(self):
         """
         : Close the sever socket
