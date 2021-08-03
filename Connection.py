@@ -1,5 +1,5 @@
 import connection_lib
-import time
+
 
 class Connect:
     def __init__(self):
@@ -9,14 +9,14 @@ class Connect:
            Example: gs -> stand for: -> get_string or: gna -> stand for: -> get_numpy_array and so on....
         """
         self.sever = connection_lib.Sever()
-        self.op_code_table = {'ss': self.sever.store_string, 
+        self.op_code_table = {'ss': self.sever.store_string,
                               'si': self.sever.store_image,
-                              'sm': self.sever.store_mp3, 
+                              'sm': self.sever.store_mp3,
                               'sg': self.sever.store_gif,
                               'srto': self.sever.set_receive_time_out,
-                              'cc': self.sever.close_connection}    
+                              'cc': self.sever.close_connection}
 
-    def _main_connection_loop(self, wait=0.5):
+    def _main_connection_loop(self):
         while True:
             received_dict = self.sever.get_dict()
             op_code = received_dict.get('op_code')
@@ -38,9 +38,6 @@ class Connect:
                 function_to_run(*args)
             print('fin')
             self.sever.send_string('<fin>')
-                
-            
-            
 
     def connect_to_client(self):
         self.sever.start_sever()
