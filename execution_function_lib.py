@@ -38,17 +38,19 @@ def run_gif(gif_path):
 
 def _music_loop():
         while mixer.music.get_busy() == 1:
+            time.sleep(2)
             pass
         print('Fin Music loop')
 
 
-def run_mp3(mp3_path):
+def run_mp3(mp3_path, tread=False):
     if mixer.music.get_busy() == 1:
         mixer.music.pause()
 
     mixer.music.load(mp3_path)
     mixer.music.play()
-    threading.Thread(target=_music_loop).start()
+    if tread is True:
+        threading.Thread(target=_music_loop).start()
 
 
 def pause_mp3():
@@ -56,11 +58,12 @@ def pause_mp3():
         pause = True
         mixer.music.pause()
 
-def unpause_mp3():
+def unpause_mp3(thread=False):
     if mixer.music.get_busy() == 0:
         pause = False
         mixer.music.unpause()
-        threading.Thread(target=_music_loop).start()
+        if thread is True:
+            threading.Thread(target=_music_loop).start()
 
 
 def main():
