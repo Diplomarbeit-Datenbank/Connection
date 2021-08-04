@@ -43,13 +43,13 @@ def _music_loop():
         print('Fin Music loop')
 
 
-def run_mp3(mp3_path, tread=False):
+def run_mp3(mp3_path, thread=False):
     if mixer.music.get_busy() == 1:
         mixer.music.pause()
 
     mixer.music.load(mp3_path)
     mixer.music.play()
-    if tread is True:
+    if thread is True:
         threading.Thread(target=_music_loop).start()
 
 
