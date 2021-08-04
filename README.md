@@ -75,6 +75,7 @@
     o sptt -> setzt die Variable pass_time_out zu True -> Bewirkt, dass sich der Sever nicht meldet, 
               wenn kein op_code empfangen wurde
            -> args: (True, True)
+           
     o sptf -> setzt die Variable pass_time_out zu False -> Bewirkt, dass sich der Sever beim Client
               in form von senden eines Time Out Errors (<'TimeOut>') beim Client meldet, wenn kein
               neuer op_code empfangen wurde
