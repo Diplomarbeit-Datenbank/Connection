@@ -65,6 +65,9 @@ def unpause_mp3(thread=False):
         if thread is True:
             threading.Thread(target=_music_loop).start()
 
+def set_volume(volume):
+    mixer.music.set_volume(volume)
+
 
 def main():
     run_mp3('/home/pi/Desktop/Diplomarbeit/Sever/song.mp3')
