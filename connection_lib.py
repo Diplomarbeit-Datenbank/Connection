@@ -124,7 +124,9 @@ class Sever:
         received = self._wait_for_data()
         try:
             return pickle.loads(received)
-        except KeyError:
+        except EOFError:
+            if self.show_info is True:
+                print('No Data is dedected')
             # if some error happens a empty dict will be returned
             return dict()
 
