@@ -84,8 +84,9 @@
     Bemerkung: args müssen immer ein tuple sein!!!!
 
 # Verwendung:
-    -> Für einen Test kann am Client (PC) das Programm connection_lib.py gestartet werden und am Sever das Programm Connection.py
-    -> Beachte dabei, dass das Programm Connection.py zuerst gestartet wird
+    -> Für einen Test kann am Client (PC) das Programm connection_lib.py gestartet werden und
+       am Sever das Programm Connection.py
+    -> Beachte dabei, dass das Programm Connection.py zuerst gestartet wird!
 
 # Anmerkungen:
     -> Diese Library wird in laufe der Zeit immer wieder erneuert, in form von vergrößerung der op_code Tabelle
