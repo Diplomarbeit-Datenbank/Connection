@@ -22,6 +22,7 @@ class Connect:
                               'rm': ex.run_mp3,
                               'pm': ex.pause_mp3,
                               'um': ex.unpause_mp3,
+                              'sv': ex.set_volume,
                               'sptt': self.set_pass_time_out_true,
                               'sptf': self.set_pass_time_out_false}
 
