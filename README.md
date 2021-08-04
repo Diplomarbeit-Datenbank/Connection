@@ -61,7 +61,7 @@
            -> args: (gif_path) # gif path on the Sever
            
     o rm   -> spielt eine MP3-Datein am Pixel Boy ab
-           -> args: (mp3_path, thread) # if thread is True: the music will be continue after closing the connection
+           -> args: (mp3_path, thread) # if thread is True: the music will be continue after closing the socket
            
     o pm   -> pausiert die gerade spielende MP3-Datei
            -> args: (True, True)
