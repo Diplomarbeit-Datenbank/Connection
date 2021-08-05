@@ -1,6 +1,20 @@
+"""
+
+    -> This File is to get the Data which is required to send
+
+"""
+
 from pydub import AudioSegment
 import numpy as np
 import cv2
+
+__author__ = 'Christof Haidegger'
+__date__ = '20.07.2021'
+__completed__ = '--.--.----'
+__work_time__ = 'about 2 hours'
+__version__ = '1.0'
+__licence__ = 'opensource(common licenced)'
+
 
 
 def get_audio_data(mp3_path):
