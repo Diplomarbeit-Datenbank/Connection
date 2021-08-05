@@ -1,8 +1,22 @@
+"""
+
+    -> This File is to run on the client
+
+"""
+
 import get_data_to_send
 import socket
 import pickle
 import time
 import sys
+
+__author__ = 'Christof Haidegger'
+__date__ = '20.07.2021'
+__completed__ = '--.--.----'
+__work_time__ = 'about 5 hours'
+__version__ = '1.0'
+__licence__ = 'opensource(common licenced)'
+
 
 
 class Client:
