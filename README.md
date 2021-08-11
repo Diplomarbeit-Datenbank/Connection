@@ -8,31 +8,31 @@
     o senden von GIFS zum Sever
     o senden von MP3-Dateien zum Sever
     o senden von strings zum Sever
-    o senden von executierbaren Funktionen mittels op_code zum Sever
+    o senden von exekutier baren Funktionen mittels op_code zum Sever
     o Senden von strings zum Client
     
     -> Anmerkung:
-       -> Der Sever (PI) soll alleine interargieren das heißt:
+       -> Der Sever (PI) soll alleine interagieren das heißt:
           o Alle Daten, die gesendet werden, müssen im ROM gespeichert werden
-          o Erst wenn die Daten am ROM gespeichert sind, kann mit ihnen interargiert werden
-            -> Ermögklicht sicherheit (keine Daten die verloren gehen können durch latenz
+          o Erst wenn die Daten am ROM gespeichert sind, kann mit ihnen interagiert werden
+            -> Ermöglicht Sicherheit (keine Daten die verloren gehen können durch Latenz
 
 # Benötigte Librarys
     o socket:    -> Für die INET4 Verbindung zwischen Sever und Client
                  -> pip install socket
-    o pickle:    -> Für die kompremierung von Daten, damit diese sich über den Socket senden lassen
+    o pickle:    -> Für die  Komprimierung  von Daten, damit diese sich über den Socket senden lassen
                  -> pip3 install pickle
     o numpy:     -> Für die Datenverarbeitung der Numpy Arrays
                  -> pip install numpy
-    o pydub:     -> Für die convertierung einer mp3 Datein in einen numpy array und zurück
+    o pydub:     -> Für die Konvertierung einer mp3 Datein in einen numpy array und zurück
                  -> pip install pydub
-    o PILLOW:    -> Für das erstellen von GIFS und speichern am Sever
+    o PILLOW:    -> Für das Erstellen von GIFS und speichern am Sever
                  -> pip install pillow
-    o opencv:    -> Für das speichern einzelner Bilder und anzeigen von GIFS zum debugging
+    o opencv:    -> Für das Speichern einzelner Bilder und anzeigen von GIFS zum debugging
                  -> pip install opencv-python
-    o threading: -> für das abspielen einer mp3-Datei am Sever auch nasch schließung der Verbindung
+    o threading: -> für das Abspielen einer mp3-Datei am Sever auch nach schließung der Verbindung
                  -> pip install threading
-    o pygame:    -> Für das abspielen von mp3-Dateien am Sever
+    o pygame:    -> Für das Abspielen von mp3-Dateien am Sever
                  -> pip install pygame
 
 # Op-Code Tabelle für den Sever:
@@ -89,5 +89,5 @@
     -> Beachte dabei, dass das Programm Connection.py zuerst gestartet wird!
 
 # Anmerkungen:
-    -> Diese Library wird in laufe der Zeit immer wieder erneuert, in form von vergrößerung der op_code Tabelle
+    -> Diese Library wird in laufe der Zeit immer wieder erneuert, in Form von Vergrößerung der op_code Tabelle
    
