@@ -8,14 +8,14 @@
     o senden von GIFS zum Sever
     o senden von MP3-Dateien zum Sever
     o senden von strings zum Sever
-    o senden von exekutier baren Funktionen mittels op_code zum Sever
+    o senden von exekutierbaren Funktionen mittels op_code zum Sever
     o Senden von strings zum Client
     
     -> Anmerkung:
        -> Der Sever (PI) soll alleine interagieren das heißt:
           o Alle Daten, die gesendet werden, müssen im ROM gespeichert werden
           o Erst wenn die Daten am ROM gespeichert sind, kann mit ihnen interagiert werden
-            -> Ermöglicht Sicherheit (keine Daten die verloren gehen können durch Latenz
+            -> Ermöglicht Sicherheit (keine Daten die durch Latenz verloren gehen können)
 
 # Benötigte Librarys
     o socket:    -> Für die INET4 Verbindung zwischen Sever und Client
@@ -30,7 +30,7 @@
                  -> pip install pillow
     o opencv:    -> Für das Speichern einzelner Bilder und anzeigen von GIFS zum debugging
                  -> pip install opencv-python
-    o threading: -> für das Abspielen einer mp3-Datei am Sever auch nach schließung der Verbindung
+    o threading: -> für das Abspielen einer mp3-Datei am Sever auch nach Schließung der Verbindung
                  -> pip install threading
     o pygame:    -> Für das Abspielen von mp3-Dateien am Sever
                  -> pip install pygame
